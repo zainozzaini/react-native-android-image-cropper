@@ -10,7 +10,8 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity
+  TouchableOpacity,
+  Image
   
 } from 'react-native';
 
@@ -29,9 +30,18 @@ const options = {
 }
 export default class App extends Component<Props> {
 
-  callback = (data) =>{
-    alert('callback-'+data);
-    console.log(data);
+  constructor(props){
+    super(props);
+    this.state = {
+      imageUri:undefined
+    }
+  }
+
+  callback = (image) =>{
+    if(image&&image.uri){
+      this.setState({imageUri:image.uri})
+    }
+    
   }
 
   selectImage = ()=>{
@@ -48,6 +58,15 @@ export default class App extends Component<Props> {
         <TouchableOpacity onPress={this.selectImage}>
             <Text>Select Image</Text>
         </TouchableOpacity>
+
+        {
+          this.state.imageUri !== undefined &&
+            <Image
+            style={{width: 400, height: 400}}
+            source={{uri: 'file:///'+this.state.imageUri}}
+          />
+        }
+        
         
       </View>
     );
