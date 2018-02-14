@@ -10,22 +10,44 @@ import {
   StyleSheet,
   Text,
   View,
+  TouchableOpacity
   
 } from 'react-native';
 
 import ImageCropper from "react-native-android-image-cropper";
 
 type Props = {};
+
+const options = {
+  title:'Crop Image',
+    cropMenuCropButtonTitle:'Done',
+    requestedSizeHeight:400,
+    requestedSizeWidth:400,
+    allowCounterRotation:false,
+    allowFlipping:false,
+    aspectRatio:[1,1]
+}
 export default class App extends Component<Props> {
 
+  callback = (data) =>{
+    alert('callback-'+data);
+    console.log(data);
+  }
+
+  selectImage = ()=>{
+    ImageCropper.selectImage(options,this.callback);
+  }
  
   render() {
-    ImageCropper.show('Boilerplate runs fine', ImageCropper.LONG);
+    
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
           Welcome to React Native!
         </Text>
+        <TouchableOpacity onPress={this.selectImage}>
+            <Text>Select Image</Text>
+        </TouchableOpacity>
         
       </View>
     );
