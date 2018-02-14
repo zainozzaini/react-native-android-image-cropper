@@ -81,7 +81,7 @@ requestedSizeWidth (int)|0|The width to resize the cropped image to
 allowCounterRotation (boolean)|false|Allow counter-clockwise rotation during cropping.<br> Note: if rotation is disabled this option has no effect.<br>
 allowFlipping (boolean) |false|Allow flipping during cropping
 aspectRatio (array [int,int])|[1,1]|X,Y value of the aspect ratio.<br>* Also sets fixes aspect ratio to TRUE.
-transferFileToExternalDir (boolean)| false|Transfer cropped image from cache to external dir and will delete the original cropped file in cache folder.
+transferFileToExternalDir (boolean)| false|Move cropped image from cache directory to external directory. Otherwise the image will stored in app cache folder.
 externalDirectoryName (String)|CropImage|Name of folder if transferFileToExternalDir is true
 autoZoomEnabled (boolean)|true|Auto-zoom functionality is enabled
 maxZoom (int)|4|The max zoom allowed during cropping
