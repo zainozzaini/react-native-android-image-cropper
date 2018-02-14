@@ -100,9 +100,9 @@ flipVertically|true|Whether the image should be flipped vertically
 
 ## License
 
-Forked from [ArthurHub/Android-Image-Cropper](https://github.com/ArthurHub/Android-Image-Cropper).
+Android library from [ArthurHub/Android-Image-Cropper](https://github.com/ArthurHub/Android-Image-Cropper).
 
-Originally forked from [edmodo/cropper](https://github.com/edmodo/cropper).
+Originally library forked from [edmodo/cropper](https://github.com/edmodo/cropper).
 
 Copyright 2018 Zainoz Zaini, 2017, Arthur Teplitzki, 2013, Edmodo, Inc.
 
