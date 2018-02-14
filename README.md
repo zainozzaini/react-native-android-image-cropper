@@ -3,7 +3,7 @@ React-Native Android Image Cropper
 
 **Powerful** (Zoom, Rotation, Multi-Source), **customizable** (Shape, Limits, Style), **optimized** (Async, Sampling, Matrix) and **simple** image cropping library for React-Native Android Module.
 
-![Crop](https://github.com/ArthurHub/Android-Image-Cropper/blob/master/art/demo.gif?raw=true)
+![Crop](https://github.com/zainozzaini/react-native-android-image-cropper/blob/master/rn-android-crop-image.gif?raw=true)
 
 ## Usage
 ```javascript
