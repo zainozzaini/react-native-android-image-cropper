@@ -7,8 +7,17 @@
   "keywords": [
     "react-native",
     "android",
-    "library"
+    "library",
+    "image",
+    "crop"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zainozzaini/react-native-android-image-cropper.git"
+  },
+  "bugs": {
+    "url": "https://github.com/zainozzaini/react-native-android-image-cropper/issues"
+  },
   "scripts": {
     "prepare": "rm -rf android/build Example/android/build Example/android/app/build node_modules",
     "start": "node node_modules/react-native/local-cli/cli.js start",

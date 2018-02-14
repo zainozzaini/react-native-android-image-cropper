@@ -20,13 +20,32 @@ import ImageCropper from "react-native-android-image-cropper";
 type Props = {};
 
 const options = {
-  title:'Crop Image',
+  guideLines:"on-touch",
+  cropShape:"rectangle",
+  title:'MY EXAMPLE',
     cropMenuCropButtonTitle:'Done',
     requestedSizeHeight:400,
     requestedSizeWidth:400,
-    allowCounterRotation:false,
-    allowFlipping:false,
-    aspectRatio:[1,1]
+    allowCounterRotation:true,
+    allowFlipping:true,
+    aspectRatio:[1,1],
+    transferFileToExternalDir:false,
+    externalDirectoryName:'MyExample',
+    autoZoomEnabled:true,
+    maxZoom:9,
+    fixAspectRatio:true,
+    initialCropWindowPaddingRatio:0.4, //10% - Set to 0 for initial crop window to fully cover the cropping image. Max 0.5
+    borderCornerThickness:10,//dp - Set to 0 to remove.
+    borderCornerOffset:10, //dp - Set to 0 place on top of the border lines.
+    borderCornerLength:10, //dp
+    guidelinesThickness:5, //dp
+    snapRadius:5, //dp - Set to 0 to disable snapping.
+    showCropOverlay:true,
+    // showProgressBar:true
+    minCropWindowWidthHeight:[40,40], //dp - min 10 dp,
+    flipHorizontally:true,
+    flipVertically:true,
+
 }
 export default class App extends Component<Props> {
 
@@ -37,15 +56,13 @@ export default class App extends Component<Props> {
     }
   }
 
-  callback = (image) =>{
-    if(image&&image.uri){
-      this.setState({imageUri:image.uri})
-    }
-    
-  }
 
   selectImage = ()=>{
-    ImageCropper.selectImage(options,this.callback);
+    ImageCropper.selectImage(options,(response)=>{
+      if(response&&response.uri){
+        this.setState({imageUri:response.uri})
+      }
+    });
   }
  
   render() {
@@ -62,7 +79,7 @@ export default class App extends Component<Props> {
         {
           this.state.imageUri !== undefined &&
             <Image
-            style={{width: 400, height: 400}}
+            style={{width: 200, height: 200}}
             source={{uri: 'file:///'+this.state.imageUri}}
           />
         }
