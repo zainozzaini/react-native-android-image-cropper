@@ -70,7 +70,7 @@ var options = {
 
 ### Options
 
-Option Name | Default| Option/Info
+Props | Default| Options/Info
 ------ | ---- | ------- 
 guideLines (String)|on|off: no guidelines will be displayed. <br>on: guidelines will always be displayed. <br>on-touch: guidelines will be displayed when the crop window is touched. 
 cropShape (String)|rectangle|rectangle,oval<br>use FixAspectRatio for Square / Circle.
