@@ -29,7 +29,7 @@ const options = {
     allowCounterRotation:true,
     allowFlipping:true,
     aspectRatio:[1,1],
-    transferFileToExternalDir:false,
+    transferFileToExternalDir:true,
     externalDirectoryName:'MyExample',
     autoZoomEnabled:true,
     maxZoom:9,
@@ -59,6 +59,11 @@ export default class App extends Component<Props> {
 
   selectImage = ()=>{
     ImageCropper.selectImage(options,(response)=>{
+      
+      console.log(response);
+    
+      //error throwns with response.error
+
       if(response&&response.uri){
         this.setState({imageUri:response.uri})
       }
@@ -80,7 +85,7 @@ export default class App extends Component<Props> {
           this.state.imageUri !== undefined &&
             <Image
             style={{width: 200, height: 200}}
-            source={{uri: 'file:///'+this.state.imageUri}}
+            source={{uri: this.state.imageUri}}
           />
         }
         

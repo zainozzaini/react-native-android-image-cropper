@@ -61,6 +61,7 @@ var options = {
  */
  
   ImageCropper.selectImage(options,(response)=>{
+      //error throwns with response.error
       if(response&&response.uri){
         this.setState({imageUri:response.uri})
       }

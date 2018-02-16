@@ -16,44 +16,36 @@ import java.io.FileOutputStream;
 
 public class MediaUtils {
 
-    public static File transferImageToGallery(Context context,Uri uri,String folderName){
-        try{
-            File originalFile = new File(uri.getPath());
-            Bitmap bitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(),uri);
+    public static File transferImageToGallery(Context context,Uri uri,String folderName) throws Exception{
 
-            FileOutputStream outStream = null;
-            File dir = null;
-            if(folderName!=null&&!folderName.isEmpty()){
-                File sdCard = Environment.getExternalStorageDirectory();
-                dir = new File(sdCard.getAbsolutePath() + "/"+folderName);
-            }else{
-                dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM),"");
-            }
-            dir.mkdirs();
-            String fileName = String.format("%d.jpg", System.currentTimeMillis());
-            File outFile = new File(dir, fileName);
-            outStream = new FileOutputStream(outFile);
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outStream);
-            outStream.flush();
-            outStream.close();
+        File originalFile = new File(uri.getPath());
+        Bitmap bitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(), uri);
 
-            Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-            intent.setData(Uri.fromFile(outFile));
-            context.sendBroadcast(intent);
+        FileOutputStream outStream = null;
+        File dir = null;
+        if (folderName != null && !folderName.isEmpty()) {
+            File sdCard = Environment.getExternalStorageDirectory();
+            dir = new File(sdCard.getAbsolutePath() + "/" + folderName);
+        } else {
+            dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), "");
+        }
+        dir.mkdirs();
+        String fileName = String.format("%d.jpg", System.currentTimeMillis());
+        File outFile = new File(dir, fileName);
+        outStream = new FileOutputStream(outFile);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outStream);
+        outStream.flush();
+        outStream.close();
 
-            //Delete original file
-            if(outFile.exists()&&originalFile.exists()){
-                originalFile.delete();
-            }
+        Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+        intent.setData(Uri.fromFile(outFile));
+        context.sendBroadcast(intent);
 
-
-            return outFile;
-
-
-        }catch (Exception e){
-
+        //Delete original file
+        if (outFile.exists() && originalFile.exists()) {
+            originalFile.delete();
         }
 
-        return null;
+        return outFile;
     }
 }

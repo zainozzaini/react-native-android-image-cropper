@@ -3,6 +3,7 @@ package com.ozdevcode.theartofdev.edmodo.cropper;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 
 import com.facebook.react.bridge.ActivityEventListener;
 import com.facebook.react.bridge.Callback;
@@ -148,32 +149,52 @@ public class ImageCropperModule extends ReactContextBaseJavaModule implements Ac
     if (requestCode != CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
       return;
     }
-    Boolean transferFileToExternalDir = options.hasKey("transferFileToExternalDir")&&
-            options.getBoolean("transferFileToExternalDir");
-    String externalDirectoryName = this.options.getString("externalDirectoryName");
 
-    responseHelper.cleanResponse();
 
-    CropImage.ActivityResult result = CropImage.getActivityResult(data);
-    if (resultCode == RESULT_OK) {
-      Uri resultUri = result.getUri();
-      String originalUri = result.getOriginalUri().getPath();
-      //do transfer
-      if(transferFileToExternalDir){
-        File transImage = transferImageToGallery(getReactApplicationContext(),resultUri,externalDirectoryName);
-        if(transImage!=null){
-          resultUri = Uri.fromFile(transImage);
+      Boolean transferFileToExternalDir = options.hasKey("transferFileToExternalDir")&&
+              options.getBoolean("transferFileToExternalDir");
+      String externalDirectoryName = this.options.getString("externalDirectoryName");
+
+      responseHelper.cleanResponse();
+
+      Exception error =  null;
+      Uri resultUri= null;
+
+      CropImage.ActivityResult result = CropImage.getActivityResult(data);
+
+      if (resultCode == RESULT_OK) {
+        resultUri = result.getUri();
+
+        //do transfer
+        if(transferFileToExternalDir){
+          try {
+            File transImage= transferImageToGallery(getReactApplicationContext(), resultUri, externalDirectoryName);
+            if(transImage!=null){
+              resultUri = Uri.fromFile(transImage);
+            }
+          }catch (Exception ex){
+            Log.e(TAG,ex.getMessage());
+            error = ex;
+          }
+
         }
+
+      } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+        error= result.getError();
       }
 
-
-      responseHelper.putString("uri",resultUri.getPath());
-      responseHelper.putString("originalUri",originalUri);
-    } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-      Exception error = result.getError();
+    if(error!=null){
+      responseHelper.invokeError(callback,error.getMessage());
+    }else if(resultUri==null||result.getOriginalUri()==null){
+      responseHelper.invokeResponse(callback);
+    }else{
+      responseHelper.putString("uri",resultUri.toString());
+      responseHelper.putString("path",resultUri.getPath());
+      responseHelper.putString("originalUri",result.getOriginalUri().toString());
+      responseHelper.putString("originalPath",resultUri.getPath());
+      responseHelper.invokeResponse(callback);
     }
 
-    responseHelper.invokeResponse(callback);
     callback = null;
     this.options = null;
 
