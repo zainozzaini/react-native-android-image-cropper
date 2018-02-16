@@ -191,7 +191,7 @@ public class ImageCropperModule extends ReactContextBaseJavaModule implements Ac
       responseHelper.putString("uri",resultUri.toString());
       responseHelper.putString("path",resultUri.getPath());
       responseHelper.putString("originalUri",result.getOriginalUri().toString());
-      responseHelper.putString("originalPath",resultUri.getPath());
+      responseHelper.putString("originalPath",result.getOriginalUri().getPath());
       responseHelper.invokeResponse(callback);
     }
 
