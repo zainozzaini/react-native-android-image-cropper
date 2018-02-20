@@ -28,7 +28,7 @@ React-Native Android Image Cropper
     ```
 6. Add the import and link the package in `MainApplication.java`:
     ```java
-    import com.imagepicker.ImagePickerPackage; // <-- add this import
+    import com.ozdevcode.theartofdev.edmodo.cropper.ImageCropperPackage; // <-- add this import
 
     public class MainApplication extends Application implements ReactApplication {
         @Override
