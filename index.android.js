@@ -27,8 +27,8 @@ const DEFAULT_OPTIONS = {
     showCropOverlay:true,
     // showProgressBar:true
     minCropWindowWidthHeight:[40,40], //dp - min 10 dp,
-    flipHorizontally:true,
-    flipVertically:true,
+    flipHorizontally:false,
+    flipVertically:false,
 
 }
 module.exports = {

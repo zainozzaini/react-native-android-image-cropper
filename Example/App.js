@@ -23,28 +23,28 @@ const options = {
   guideLines:"on-touch",
   cropShape:"rectangle",
   title:'MY EXAMPLE',
-    cropMenuCropButtonTitle:'Done',
-    requestedSizeHeight:400,
-    requestedSizeWidth:400,
-    allowCounterRotation:true,
-    allowFlipping:true,
-    aspectRatio:[1,1],
-    transferFileToExternalDir:true,
-    externalDirectoryName:'MyExample',
-    autoZoomEnabled:true,
-    maxZoom:9,
-    fixAspectRatio:true,
-    initialCropWindowPaddingRatio:0.4, //10% - Set to 0 for initial crop window to fully cover the cropping image. Max 0.5
-    borderCornerThickness:10,//dp - Set to 0 to remove.
-    borderCornerOffset:10, //dp - Set to 0 place on top of the border lines.
-    borderCornerLength:10, //dp
-    guidelinesThickness:5, //dp
-    snapRadius:5, //dp - Set to 0 to disable snapping.
-    showCropOverlay:true,
-    // showProgressBar:true
-    minCropWindowWidthHeight:[40,40], //dp - min 10 dp,
-    flipHorizontally:true,
-    flipVertically:true,
+    // cropMenuCropButtonTitle:'Done',
+    // requestedSizeHeight:400,
+    // requestedSizeWidth:400,
+    // allowCounterRotation:true,
+    // allowFlipping:true,
+    // aspectRatio:[1,1],
+    // transferFileToExternalDir:true,
+    // externalDirectoryName:'MyExample',
+    // autoZoomEnabled:true,
+    // maxZoom:9,
+    // fixAspectRatio:true,
+    // initialCropWindowPaddingRatio:0.4, //10% - Set to 0 for initial crop window to fully cover the cropping image. Max 0.5
+    // borderCornerThickness:10,//dp - Set to 0 to remove.
+    // borderCornerOffset:10, //dp - Set to 0 place on top of the border lines.
+    // borderCornerLength:10, //dp
+    // guidelinesThickness:5, //dp
+    // snapRadius:5, //dp - Set to 0 to disable snapping.
+    // showCropOverlay:true,
+    // // showProgressBar:true
+    // minCropWindowWidthHeight:[40,40], //dp - min 10 dp,
+    // flipHorizontally:true,
+    // flipVertically:true,
 
 }
 export default class App extends Component<Props> {
