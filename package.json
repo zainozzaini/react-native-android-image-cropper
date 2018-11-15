@@ -3,6 +3,7 @@
   "version": "0.2.4",
   "author": "Zainoz.Zaini",
   "private": false,
+  "main": "index.js",
   "license": "Apache-2.0",
   "keywords": [
     "react-native",
